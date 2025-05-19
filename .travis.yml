@@ -1,0 +1,11 @@
+language: java
+jdk:
+  - openjdk11
+script:
+  - javac src/PhoneFormatter.java -d .
+  - java PhoneFormatter
+cache:
+  directories:
+    - $HOME/.m2
+notifications:
+  email: false
