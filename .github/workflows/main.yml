@@ -22,27 +22,22 @@ jobs:
         
     - name: Verify output
       run: |
-        echo "Содержимое рабочей директории:"
-        ls -la
-        
-        echo "Проверка output.txt:"
+        echo "=== Проверка output.txt ==="
         if [ ! -f "output.txt" ]; then
-          echo "❌ Файл output.txt не найден"
+          echo "❌ Файл output.txt не найден!"
           exit 1
         fi
         
-        echo "--- Содержимое output.txt ---"
+        echo "Содержимое output.txt:"
         cat output.txt
-        echo "----------------------------"
         
-        if ! grep -q "+1 (900) 111-22-33" output.txt; then
-          echo "❌ Не найден номер +1 (900) 111-22-33"
+        echo "Проверяем наличие номеров..."
+        if grep -q "+1 (900) 111-22-33" output.txt && grep -q "+1 (915) 555-66-77" output.txt; then
+          echo "✅ Все номера найдены!"
+        else
+          echo "❌ Не все номера найдены!"
+          echo "Ожидаемые номера:"
+          echo "+1 (900) 111-22-33"
+          echo "+1 (915) 555-66-77"
           exit 1
         fi
-        
-        if ! grep -q "+1 (915) 555-66-77" output.txt; then
-          echo "❌ Не найден номер +1 (915) 555-66-77"
-          exit 1
-        fi
-        
-        echo "✅ Все проверки пройдены успешно"
