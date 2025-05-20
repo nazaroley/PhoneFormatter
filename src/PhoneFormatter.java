@@ -3,7 +3,6 @@ import java.util.regex.*;
 
 public class PhoneFormatter {
     public static void main(String[] args) throws IOException {
-        System.out.println("PhoneFormatter v1.0");
         BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
         String line;
         Pattern pattern = Pattern.compile("(\\+7|8)(\\d{10})");
