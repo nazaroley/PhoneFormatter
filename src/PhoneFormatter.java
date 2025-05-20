@@ -24,17 +24,28 @@ public class PhoneFormatter {
             
             String line;
             while ((line = reader.readLine()) != null) {
-                writer.write(formatPhone(line) + "\n");
+                String formatted = formatPhone(line);
+                writer.write(formatted + "\n");
+                System.out.println("Обработано: " + line + " -> " + formatted);
             }
         }
     }
     
     public static void main(String[] args) {
         try {
+            // Создаем тестовый input.txt если не существует
+            File input = new File("input.txt");
+            if (!input.exists()) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(input))) {
+                    writer.write("+79001112233\n");
+                    writer.write("89155556677\n");
+                }
+            }
+            
             processFile("input.txt", "output.txt");
-            System.out.println("Форматирование завершено. Результат в output.txt");
         } catch (IOException e) {
             System.err.println("Ошибка: " + e.getMessage());
+            System.exit(1);
         }
     }
 }
