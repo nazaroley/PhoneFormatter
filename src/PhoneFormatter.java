@@ -24,9 +24,7 @@ public class PhoneFormatter {
             
             String line;
             while ((line = reader.readLine()) != null) {
-                String formatted = formatPhone(line);
-                writer.write(formatted + "\n");
-                System.out.println("Обработано: " + line + " -> " + formatted);
+                writer.write(formatPhone(line) + "\n");
             }
         }
     }
